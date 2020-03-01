@@ -16,6 +16,9 @@ public class PropertyInjector {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private PathProperties pathProperties;
+
     @Value("${currency.dir.path}")
     private String pathAsString;
 
@@ -43,18 +46,18 @@ public class PropertyInjector {
 //    @Autowired
     private ResourceLoader resourceLoader;
 
-    public PropertyInjector(@Autowired ResourceLoader resourceLoader, @Value("${currency.dir.url-path}") Resource pathAsUrlResource) {
-        this.resourceLoader = resourceLoader;
-        this.pathAsUrlResource = pathAsUrlResource;
-    }
+//    public PropertyInjector(@Autowired ResourceLoader resourceLoader, @Value("${currency.dir.url-path}") Resource pathAsUrlResource) {
+//        this.resourceLoader = resourceLoader;
+//        this.pathAsUrlResource = pathAsUrlResource;
+//    }
 //    AnnotationConfigServletWebServerApplicationContext
     @PostConstruct
     private void init() throws IOException {
         logger.info("PropertyInjector -> currencyDirPath as String = {} ", pathAsString);
         logger.info("PropertyInjector -> currencyDirPath as Resource = {} -> {} ", pathAsResource.getClass(),
                 pathAsResource /*, pathAsResource.getFile().getAbsolutePath() */);
-        logger.info("PropertyInjector -> currencyDirPath as UrlResource = {} -> {} -> {} ", pathAsUrlResource.getClass(),
-                pathAsUrlResource, pathAsUrlResource.getFile().getAbsolutePath());
+//        logger.info("PropertyInjector -> currencyDirPath as UrlResource = {} -> {} -> {} ", pathAsUrlResource.getClass(),
+//                pathAsUrlResource, pathAsUrlResource.getFile().getAbsolutePath());
         logger.info("PropertyInjector -> currencyDirPath as ClassPathResource = {} -> {} -> {} ", pathAsClassPathResource.getClass(),
                 pathAsClassPathResource, pathAsClassPathResource.getFile().getAbsolutePath());
     }

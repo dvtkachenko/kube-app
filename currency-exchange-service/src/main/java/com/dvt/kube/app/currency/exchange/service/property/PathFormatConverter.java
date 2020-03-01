@@ -6,7 +6,7 @@ public class PathFormatConverter {
     public static String CLASSPATH_URL_PREFIX = "classpath:";
 
     public String convertToResourceFitFormat(String sourcePath) {
-        if(isUrlPathType(sourcePath) || isClassPathType(sourcePath)) {
+        if(sourcePath.isEmpty() || isUrlPathType(sourcePath) || isClassPathType(sourcePath)) {
             return sourcePath;
         }
         return FILE_URL_PREFIX + sourcePath;
