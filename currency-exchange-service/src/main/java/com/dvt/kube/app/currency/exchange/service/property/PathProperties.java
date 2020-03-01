@@ -24,11 +24,7 @@ public class PathProperties {
     }
 
     public void setUrlPath(String urlPath) {
-        if(!urlPath.startsWith("file:")) {
-            this.urlPath = "file:" + urlPath;
-        } else {
-            this.urlPath = urlPath;
-        }
+       this.urlPath = new PathFormatConverter().convertToResourceFitFormat(urlPath);;
     }
 
     public String getClassPath() {

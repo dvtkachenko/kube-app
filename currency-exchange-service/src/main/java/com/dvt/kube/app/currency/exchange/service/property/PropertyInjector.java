@@ -22,20 +22,18 @@ public class PropertyInjector {
     @Value("${currency.dir.path}")
     private Resource pathAsResource;
 
-//    @Value("${currency.dir.url.path}")
+//    @Value("${currency.dir.url-path}")
     private Resource pathAsUrlResource;
 
-    @Value("${currency.dir.class.path}")
+    @Value("${currency.dir.class-path}")
     private Resource pathAsClassPathResource;
 
 //    @Value("#{pathProperties.getUrlPath()}")
 //    @Value("#{propertyInjector.getPreparedPathValue()}")
 //    @Value("#{propertyInjector.convertToResourceFitType('${currency.dir.class.path}')}")
-    @Value("#{propertyInjector.convertToResourceFitFormat('${currency.dir.path}')}")
+//    @Value("#{propertyInjector.convertToResourceFitFormat('${currency.dir.path}')}")
+    @Value("#{pathProperties.getUrlPath()}")
 //    @Value("#{new com.dvt.kube.app.currency.exchange.service.property.PathFormatConverter().convertToResourceFitFormat('${currency.dir.path}')}")
-//    @Value("#{#this.getPreparedPathValue()}")
-//    @Value("#{#root.getPreparedPathValue()}")
-//    @Value("#root.getPreparedPathValue()")
     private Resource pathAsUrlResourceBySpel;
 
 
@@ -45,7 +43,7 @@ public class PropertyInjector {
 //    @Autowired
     private ResourceLoader resourceLoader;
 
-    public PropertyInjector(@Autowired ResourceLoader resourceLoader, @Value("${currency.dir.url.path}") Resource pathAsUrlResource) {
+    public PropertyInjector(@Autowired ResourceLoader resourceLoader, @Value("${currency.dir.url-path}") Resource pathAsUrlResource) {
         this.resourceLoader = resourceLoader;
         this.pathAsUrlResource = pathAsUrlResource;
     }
