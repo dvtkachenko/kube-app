@@ -4,11 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -32,10 +30,17 @@ public class PropertyInjector {
 
 //    @Value("#{pathProperties.getUrlPath()}")
 //    @Value("#{propertyInjector.getPreparedPathValue()}")
+//    @Value("#{propertyInjector.convertToResourceFitType('${currency.dir.class.path}')}")
+    @Value("#{propertyInjector.convertToResourceFitFormat('${currency.dir.path}')}")
+//    @Value("#{new com.dvt.kube.app.currency.exchange.service.property.PathFormatConverter().convertToResourceFitFormat('${currency.dir.path}')}")
 //    @Value("#{#this.getPreparedPathValue()}")
 //    @Value("#{#root.getPreparedPathValue()}")
 //    @Value("#root.getPreparedPathValue()")
     private Resource pathAsUrlResourceBySpel;
+
+
+    @Value("#{#root}")
+    private Object value;
 
 //    @Autowired
     private ResourceLoader resourceLoader;
@@ -56,12 +61,7 @@ public class PropertyInjector {
                 pathAsClassPathResource, pathAsClassPathResource.getFile().getAbsolutePath());
     }
 
-    public String getPreparedPathValue() {
-        String preparedPath = this.pathAsString;
-
-        if(!pathAsString.startsWith("file:")) {
-            preparedPath = "file:" + this.pathAsString;
-        }
-        return preparedPath;
+    public String convertToResourceFitFormat(String propertyPath) {
+        return new PathFormatConverter().convertToResourceFitFormat(propertyPath);
     }
 }
