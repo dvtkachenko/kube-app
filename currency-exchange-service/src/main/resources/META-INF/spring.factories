@@ -1,0 +1,1 @@
+org.springframework.boot.env.EnvironmentPostProcessor=com.dvt.kube.app.currency.exchange.service.property.PathEnvironmentPostProcessor

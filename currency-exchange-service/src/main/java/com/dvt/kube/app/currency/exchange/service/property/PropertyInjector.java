@@ -18,6 +18,7 @@ public class PropertyInjector {
 
     @Autowired
     private PathProperties pathProperties;
+//    private PathProperties paths;
 
     @Value("${currency.dir.path}")
     private String pathAsString;
@@ -36,6 +37,7 @@ public class PropertyInjector {
 //    @Value("#{propertyInjector.convertToResourceFitType('${currency.dir.class.path}')}")
 //    @Value("#{propertyInjector.convertToResourceFitFormat('${currency.dir.path}')}")
     @Value("#{pathProperties.getUrlPath()}")
+//    @Value("#{paths.getUrlPath()}")
 //    @Value("#{new com.dvt.kube.app.currency.exchange.service.property.PathFormatConverter().convertToResourceFitFormat('${currency.dir.path}')}")
     private Resource pathAsUrlResourceBySpel;
 
