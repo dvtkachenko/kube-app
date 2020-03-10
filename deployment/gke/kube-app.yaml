@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: currency-exchange-module
+  name: currency-exchange-pod
 spec:
   containers:
-    - image: ????
+    - image: eu.gcr.io/dvt-kube-app/currency-exchange-service
       name: currency-exchange-service
       ports:
         - containerPort: 8000
