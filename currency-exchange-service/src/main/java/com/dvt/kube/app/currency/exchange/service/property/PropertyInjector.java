@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 
-@Component
+//@Component
 public class PropertyInjector {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());

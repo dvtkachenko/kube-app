@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: currency-exchange-module
+spec:
+  containers:
+    - image: ????
+      name: currency-exchange-service
+      ports:
+        - containerPort: 8000
+          protocol: TCP
+

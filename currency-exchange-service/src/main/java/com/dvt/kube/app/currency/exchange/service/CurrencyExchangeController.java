@@ -24,12 +24,13 @@ public class CurrencyExchangeController {
         ExchangeValue exchangeValue = repository.findByFromAndTo(from, to);
         // env property as VM parameter  e.g. -Dserver.port=8001
         exchangeValue.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
-        logger.info("{}", exchangeValue);
+        logger.info("Currency exchanged from {} to {} -> exchange value {}", from, to, exchangeValue);
         return exchangeValue;
     }
 
     @GetMapping("/execute")
     public String execute() {
+        logger.info("endpoint '/execute' is executed");
         return "It is executed";
     }
 }
