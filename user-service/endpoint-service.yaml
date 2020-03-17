@@ -1,0 +1,20 @@
+# endpoint with load balancer for Kubernetes
+# kubectl create -f ./endpoint-service.yaml
+
+# this configuration does not work properly
+
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: spring-frontend
+#  labels:
+#    app: spring-app
+#    tier: frontend
+#spec:
+#  type: LoadBalancer
+#  ports:
+#    - port: 80
+#      targetPort: 8080
+#  selector:
+#    app: spring-app
+#    tier: frontend

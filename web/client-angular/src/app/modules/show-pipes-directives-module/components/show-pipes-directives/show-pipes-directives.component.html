@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="col-6 mx-auto">
+    <div class="card card-body">
+      <h5 class="card-title"> Current date </h5>
+      <p class="card-text"> {{ currentDate | customDate:"en-US":"YYYY/MM/DD HH:mm:ss" }} </p>
+
+      <h5 class="card-title"> Array </h5>
+      <p class="card-text"> Array = [{{ numArray | slice }}] </p>
+      <p class="card-text"> Sum of all array's elements = {{ numArray | sumarray }} </p>
+      <button [myNgClass]="'btn btn-outline-info m-1'" 
+              [myNgStyle]="{'max-width': '15em', 'font-size': '20px'}" 
+              (click)="addNewElement()">Add new random element</button>
+    </div>
+  </div>
+</div>

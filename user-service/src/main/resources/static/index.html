@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <title>Spring MVC application</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light mb-3">
+    <div class="d-flex justify-content-start">
+        <a class="navbar-brand" href="#">Spring MVC start page</a>
+        <div class="collapse show ml-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a href="/api/users" class="nav-link">User list by REST</a>
+                </li>
+                <li class="nav-item ml-3">
+                    <a href="/users" class="nav-link">User list by MVC controller</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="content-wrapper">
+    <section class="content-header display-grid" layout:fragment="content">
+    </section>
+</div>
+</body>
+</html>

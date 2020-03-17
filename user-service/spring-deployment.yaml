@@ -1,0 +1,29 @@
+
+# Kubernetes deployment config
+# kubectl create -f ./spring-deployment.yaml
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: spring-backend
+  labels:
+    app: spring-app
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: spring-app
+        tier: backend
+    spec:
+      containers:
+        - name: spring-backend
+          image: gcr.io/qwiklabs-gcp-00-e693c6933041/spring-backend
+          imagePullPolicy: Always
+          env:
+            - name: GCLOUD_PROJECT
+              value: qwiklabs-gcp-00-e693c6933041
+#            - name: GCLOUD_BUCKET
+#              value: [GCLOUD_BUCKET]
+            - name: NODE_ENV
+              value: production

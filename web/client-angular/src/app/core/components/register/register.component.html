@@ -1,0 +1,45 @@
+<div class="container">
+  <ngx-spinner type="ball-atom" loadingText="Processing ...">
+  </ngx-spinner>
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div class="card card-body">
+        <h2> Register new user </h2>
+        <form novalidate [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" name="email" formControlName="email"
+                   [ngClass]="{ 'is-invalid': registerForm.get('email').invalid && registerForm.get('email').dirty }">
+            <div class="invalid-feedback" [hidden]="!registerForm.get('email').hasError('required')">
+                E-mail can not be empty
+            </div>
+            <div class="invalid-feedback" [hidden]="!registerForm.get('email').hasError('email')">
+                E-mail invalid
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" class="form-control" name="name" formControlName="name"
+                   [ngClass]="{ 'is-invalid': registerForm.get('name').invalid && registerForm.get('name').dirty }">
+            <div class="invalid-feedback" [hidden]="registerForm.get('name').valid" 
+                 *ngFor="let error of registerForm.get('name').errors | keyvalue">
+               {{ error.value }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" name="password" formControlName="password"
+                   [ngClass]="{ 'is-invalid': registerForm.get('password').invalid && registerForm.get('password').dirty }">
+            <div class="invalid-feedback" [hidden]="registerForm.get('password').valid" 
+                 *ngFor="let error of registerForm.get('password').errors | keyvalue">
+               {{ error.value }}
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mx-2" [disabled]="registerForm.invalid">Register</button>
+          <button type="submit" class="btn btn-primary mx-2" (click)="onCancel()">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

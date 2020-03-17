@@ -8,11 +8,11 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>io.spring.boot.microservices</groupId>
+	<groupId>com.dvt.kube.app</groupId>
 	<artifactId>currency-conversion-service</artifactId>
-	<version>0.0.1</version>
+	<version>0.1.0</version>
 	<name>currency-conversion-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo microservices project for Google Cloud</description>
 
 	<properties>
 		<java.version>1.8</java.version>

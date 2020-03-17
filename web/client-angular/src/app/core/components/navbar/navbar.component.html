@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark bg-primary mb-3">
+  <div class="d-flex justify-content-start">
+    <a class="navbar-brand" href="#">{{ brand }}</a>
+    <div class="collapse show ml-3" *ngIf="isShowed">
+      <ul class="navbar-nav flex-row">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/" class="nav-link">Todo</a>
+        </li>
+        <li class="nav-item ml-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/show-pipes-directives" class="nav-link">Pipes & Directives</a>
+        </li>
+        <li class="nav-item ml-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/about" class="nav-link">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end" *ngIf="isShowed">
+    <button class="btn btn-light" (click)="logout()">logout</button>
+  </div>
+</nav>

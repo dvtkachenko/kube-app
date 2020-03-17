@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <ngx-spinner type="ball-atom" loadingText="Processing ...">
+  </ngx-spinner>
+  <div class="row ml-4 mb-4">
+    <td>
+      <button routerLink="/users" class="btn btn-primary">Add todo</button>
+    </td>    
+  </div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>User age</th>
+        <th>Comment</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.comment }}</td>
+        <td>
+          <button routerLink="/users/{{user.id}}" class="btn btn-outline-primary">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="onDelete(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
