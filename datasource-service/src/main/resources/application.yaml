@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+#https:
+#  protocols: TLSv1.3
+#  cipherSuites: TLS_AES_256_GCM_SHA384
+
+datasource:
+  identity:
+    url: https://identity
+    username: user1
+    password: user1
+
+event:
+  management:
+    enabled: true
+    name: Datasouce Service
+
+#properties:
+#  path: jar:resources/application.yaml
+
+simulation:
+  url: http://simulation
+
