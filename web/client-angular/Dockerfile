@@ -1,38 +1,31 @@
-# took here https://habr.com/ru/company/ruvds/blog/440656/
-
-#FROM node:10 As build
-## Папки
-#RUN mkdir /app && mkdir /src
-#WORKDIR /src
-## Установка зависимостей
-#COPY package*.json ./
-#RUN npm install
-## Для использования в продакшне
-## RUN npm install --production
-## Копирование файлов проекта и сборка проекта
-#COPY . .
-#RUN npm run build:production
-## В результате получается образ, состоящий из одного слоя
-#FROM node:alpine
-## Копируем собранные файлы из папки build в папку app
-#COPY --from=build ./src/build/* /app/
-#ENTRYPOINT ["/app"]
-#CMD ["--help"]
-
-
 # took here https://medium.com/@wkrzywiec/build-and-run-angular-application-in-a-docker-container-b65dbbc50be8
+
+# read more about config here https://medium.com/@tiangolo/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds-bb9f1724e984
+# https://medium.com/@avatsaev/create-efficient-angular-docker-images-with-multi-stage-builds-907e2be3008d
 
 #FROM nginx:1.17.1-alpine
 #COPY /dist/user-client-app /usr/share/nginx/html
 
 ### STAGE 1: Build ###
-FROM node:12-alpine AS build
+FROM node:12-alpine AS build_stage
 WORKDIR /usr/src/app
 COPY package.json ./
+## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 RUN npm install
 COPY . .
-RUN npm run build
+## Build the angular app in production mode and store the artifacts in dist folder
+RUN npm run build --prod --output-path=dist
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
-COPY --from=build /usr/src/app/dist/user-client-app /usr/share/nginx/html
+
+## Copy our default nginx config
+COPY nginx/default.conf /etc/nginx/conf.d/
+
+## Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+
+## From ‘builder’ stage copy over the artifacts in dist folder to default nginx public folder
+COPY --from=build_stage /usr/src/app/dist/user-client-app /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

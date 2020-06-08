@@ -1,0 +1,18 @@
+# mkdir /storage/modules
+# gsutil cp -r gs://dvt-kube-app-modules /storage/modules
+# gsutil cp -r gs://dvt-kube-app-modules/* /storage/modules
+
+# FROM gcr.io/google.com/cloudsdktool/cloud-sdk
+
+# FROM google/cloud-sdk:slim
+
+# FROM google/cloud-sdk:latest
+
+FROM google/cloud-sdk:alpine
+
+# RUN apt-get update && apt-get install
+
+ADD /secret/dvt-kube-app-a4064082d535.json /storage/secret/dvt-kube-app-key.json
+WORKDIR /storage
+
+ENTRYPOINT ["sh", "-c", "echo"]

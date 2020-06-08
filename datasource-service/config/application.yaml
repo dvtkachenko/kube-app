@@ -1,0 +1,28 @@
+# test overriding properties by Spring Boot
+# https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-external-config-application-property-files
+
+https:
+  protocols: TLSv1.3
+  cipherSuites: TLS_AES_256_GCM_SHA384
+
+datasource:
+  identity:
+    url: https://identity
+
+#server:
+#  port: 8100
+#
+#datasource:
+#  identity:
+#    url: https://identity
+##    username: user2
+#    password: user2
+#
+#event:
+#  management:
+#    enabled: true
+#    name: Datasouce Service
+#
+#properties:
+#  path: /config/application.yaml
+

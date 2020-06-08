@@ -2,6 +2,7 @@ package com.dvt.kube.app.currency.exchange.service.property;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -12,7 +13,7 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 //@Component
-public class PropertyInjector {
+public class PropertyInjector implements InitializingBean {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -66,5 +67,10 @@ public class PropertyInjector {
 
     public String convertToResourceFitFormat(String propertyPath) {
         return new PathFormatConverter().convertToResourceFitFormat(propertyPath);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("afterPropertiesSet()");
     }
 }

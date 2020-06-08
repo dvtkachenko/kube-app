@@ -1,0 +1,29 @@
+FROM golang:1.8-alpine
+# Using two stage build for super small alpine based image
+
+ARG GCSFUSE_VERSION=0.21.0
+
+RUN apk --update add git fuse fuse-dev;
+RUN go get -d github.com/googlecloudplatform/gcsfuse
+RUN go install github.com/googlecloudplatform/gcsfuse/tools/build_gcsfuse
+
+RUN build_gcsfuse ${GOPATH}/src/github.com/googlecloudplatform/gcsfuse /tmp ${GCSFUSE_VERSION}
+
+FROM alpine:3.5
+ARG GCSFUSE_VERSION=0.21.0
+
+LABEL alpine_version="3.5"
+LABEL gcsfuse_version=${GCSFUSE_VERSION}
+
+COPY --from=0 /tmp/bin/gcsfuse /usr/bin
+COPY --from=0 /tmp/sbin/mount.gcsfuse /usr/sbin
+RUN ln -s /usr/sbin/mount.gcsfuse /usr/sbin/mount.fuse.gcsfuse \
+  && apk --update add fuse sudo rsync curl
+
+# set running environments
+# ENV UID 0
+
+ADD /secret/dvt-kube-app-a4064082d535.json /storage/secret/dvt-kube-app-key.json
+
+#COPY start.sh /start.sh
+CMD ["echo"]

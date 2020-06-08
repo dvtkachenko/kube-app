@@ -9,7 +9,11 @@ open cmd/shell
 
 cd web/client-angular
 
+**to build app locally fulfill**
+
 npm run build --prod
+
+**to run it in a container fulfill**
 
 docker build  -t angular-user-client-app .
 
@@ -28,3 +32,10 @@ mvn clean install
 docker build  -t user-service .
 
 docker run --rm --name user-service-container -p 8080:8080 user-service
+
+
+# Useful links 
+
+https://github.com/avatsaev/angular-contacts-app-example
+
+https://medium.com/@tiangolo/angular-in-docker-with-nginx-supporting-environments-built-with-multi-stage-docker-builds-bb9f1724e984
